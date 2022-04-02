@@ -10,13 +10,25 @@ const personalMovieDB = {
     privat: false
 };
 
-const lastMovieYouSeen1 = prompt("Last movie you have seen", "mm...Harry Potter?");
-const lastMovieRate1 = prompt(`Please rate ${lastMovieYouSeen1}`, "100");
+for (let index = 0; index < 2; index++) {
+    const lastMovieYouSeen = prompt("Last movie you have seen", "mm...Harry Potter?");
+    if (lastMovieYouSeen == null || lastMovieYouSeen.length <= 0 || lastMovieYouSeen.length > 50) {
+        console.log("lastMovieYouSeen must be not empty and no more than 50 chars");
+        index--;
+        break;
+    }
+    const lastMovieRate = prompt(`Please rate ${lastMovieYouSeen}`, "100");
+    personalMovieDB.movies[lastMovieYouSeen] = lastMovieRate;
+}
 
-const lastMovieYouSeen2 = prompt("Last movie you have seen", "mm...Harry Potter?");
-const lastMovieRate2 = prompt(`Please rate ${lastMovieYouSeen2}`, "100");
-
-personalMovieDB.movies[lastMovieYouSeen1] = lastMovieRate1;
-personalMovieDB.movies[lastMovieYouSeen2] = lastMovieRate2;
+if (personalMovieDB.count < 10) {
+    console.log("personalMovieDB < 10");
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    console.log("personalMovieDB >= 10 && personalMovieDB < 30");
+} else if (personalMovieDB.count >= 30) {
+    console.log("personalMovieDB >= 30");
+} else {
+    console.log("Oops!");
+}
 
 console.log(personalMovieDB);
